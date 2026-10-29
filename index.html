@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nihongo Step - Học Từ Vựng Tiếng Nhật N5 Tương Tác</title>
+  <meta name="description" content="Website học từ vựng tiếng Nhật JLPT N5 tương tác cao, flashcard 3D mượt mà, phát âm giọng chuẩn, câu ví dụ thực tế và bài kiểm tra thông minh dành cho người Việt Nam.">
+  <meta name="keywords" content="Học tiếng Nhật, JLPT N5, Từ vựng tiếng Nhật, Flashcard tiếng Nhật, Ngữ pháp N5, Phát âm tiếng Nhật">
+
+  <!-- Google Fonts: Hỗ trợ tiếng Việt và chữ Hán, Hiragana, Katakana -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 Icons (Free CDN) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/themes.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <div class="app-container">
+
+    <!-- =====================================================================
+         SIDEBAR (THANH ĐIỀU HƯỚNG BÊN TRÁI)
+         ===================================================================== -->
+    <aside class="app-sidebar" id="app-sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-logo">日</div>
+        <div class="brand-text">
+          <h2>Nihongo Step</h2>
+          <p>Tiếng Nhật Sơ Cấp N5</p>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="#dashboard" class="nav-item active" data-nav-target="dashboard">
+          <i class="fas fa-home"></i>
+          <span>Trang chủ</span>
+        </a>
+        <a href="#flashcards" class="nav-item" data-nav-target="flashcards">
+          <i class="fas fa-clone"></i>
+          <span>Thẻ Flashcard</span>
+        </a>
+        <a href="#quiz" class="nav-item" data-nav-target="quiz">
+          <i class="fas fa-question-circle"></i>
+          <span>Bài tập & Quiz</span>
+        </a>
+        <a href="#review" class="nav-item" data-nav-target="review">
+          <i class="fas fa-sync-alt"></i>
+          <span>Ôn tập thông minh</span>
+        </a>
+        <a href="#dictionary" class="nav-item" data-nav-target="dictionary">
+          <i class="fas fa-book"></i>
+          <span>Tra cứu từ vựng</span>
+        </a>
+        <a href="#grammar" class="nav-item" data-nav-target="grammar">
+          <i class="fas fa-lightbulb"></i>
+          <span>Ngữ pháp & Văn hóa</span>
+        </a>
+        <a href="#statistics" class="nav-item" data-nav-target="statistics">
+          <i class="fas fa-chart-pie"></i>
+          <span>Thống kê học tập</span>
+        </a>
+        <a href="#settings" class="nav-item" data-nav-target="settings">
+          <i class="fas fa-cog"></i>
+          <span>Cài đặt hệ thống</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-streak-widget">
+          <i class="fas fa-fire streak-fire-icon"></i>
+          <div class="streak-info">
+            <div class="streak-val"><span id="header-streak-val">1</span> Ngày liên tiếp</div>
+            <div class="streak-sub">Tiến bộ mỗi ngày!</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- =====================================================================
+         MAIN WRAPPER & TOP BAR
+         ===================================================================== -->
+    <div class="app-main">
+
+      <!-- TOP BAR -->
+      <header class="app-topbar">
+        <div class="topbar-left">
+          <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Menu">
+            <i class="fas fa-bars"></i>
+          </button>
+          <div class="topbar-quote">
+            <i class="fas fa-quote-left text-muted me-1"></i> “Mỗi ngày một chút tiếng Nhật, tiến bộ từng ngày!”
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <div class="stat-chip chip-streak" title="Chuỗi ngày học liên tiếp">
+            <i class="fas fa-fire"></i>
+            <span id="dash-streak-badge">Chuỗi: <strong id="dash-stat-streak">1</strong></span>
+          </div>
+
+          <div class="stat-chip chip-xp" title="Điểm kinh nghiệm tích lũy">
+            <i class="fas fa-bolt"></i>
+            <span><strong id="header-xp-val">0</strong> XP</span>
+          </div>
+
+          <button class="btn-icon" id="quick-theme-toggle" title="Đổi chế độ Sáng / Tối" aria-label="Giao diện">
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
+      </header>
+
+      <!-- MAIN CONTENT PAGES -->
+      <main class="app-content">
+
+        <!-- =================================================================
+             TAB 1: TRANG CHỦ DASHBOARD
+             ================================================================= -->
+        <section class="app-tab-content active" id="tab-dashboard">
+          <!-- Hero Banner -->
+          <div class="dash-hero-card">
+            <div class="dash-hero-content">
+              <h1>Xin chào bạn học tiếng Nhật! 🌸</h1>
+              <p>Chào mừng bạn đến với <strong>Nihongo Step</strong>. Hãy bắt đầu học và ghi nhớ các nhóm từ vựng N5 quan trọng bằng Flashcard và các bài kiểm tra trắc nghiệm sinh động.</p>
+              <div class="dash-hero-actions">
+                <button class="btn-white" id="dash-btn-continue">
+                  <i class="fas fa-play"></i> Tiếp tục học
+                </button>
+                <button class="btn-outline-white" id="dash-btn-review">
+                  <i class="fas fa-redo"></i> Ôn tập từ vựng
+                </button>
+                <button class="btn-outline-white" id="dash-btn-quiz">
+                  <i class="fas fa-check-circle"></i> Kiểm tra ngay
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Thống kê tổng quan dạng thẻ -->
+          <div class="dash-stats-grid">
+            <div class="stat-card">
+              <div class="stat-card-icon icon-blue">
+                <i class="fas fa-book-open"></i>
+              </div>
+              <div>
+                <div class="stat-card-value" id="dash-stat-total">60</div>
+                <div class="stat-card-label">Tổng số từ N5</div>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-card-icon icon-green">
+                <i class="fas fa-graduation-cap"></i>
+              </div>
+              <div>
+                <div class="stat-card-value" id="dash-stat-learned">0</div>
+                <div class="stat-card-label">Số từ đã tiếp cận</div>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-card-icon icon-amber">
+                <i class="fas fa-hourglass-half"></i>
+              </div>
+              <div>
+                <div class="stat-card-value" id="dash-stat-review">0</div>
+                <div class="stat-card-label">Từ cần ôn tập</div>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-card-icon icon-green">
+                <i class="fas fa-award"></i>
+              </div>
+              <div>
+                <div class="stat-card-value" id="dash-stat-mastered">0</div>
+                <div class="stat-card-label">Từ đã nhớ vững</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Thanh tiến độ tổng quan -->
+          <div class="dash-progress-box">
+            <div class="dash-progress-header">
+              <span class="fw-bold"><i class="fas fa-chart-line text-primary me-2"></i>Tiến độ hoàn thành khóa từ vựng N5</span>
+              <span class="fw-bold text-primary" id="dash-stat-completion">0%</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" id="dash-progress-fill" style="width: 0%;"></div>
+            </div>
+            <div class="d-flex justify-content-between mt-2 small text-muted">
+              <span>Độ chính xác Quiz: <strong class="text-primary" id="dash-stat-accuracy">0%</strong></span>
+              <span>Tổng kinh nghiệm: <strong class="text-warning" id="dash-stat-xp">0 XP</strong></span>
+            </div>
+          </div>
+
+          <!-- Danh sách bài học theo chuyên đề -->
+          <h3 class="dash-section-title">
+            <i class="fas fa-layer-group text-primary"></i> Các nhóm bài học từ vựng N5
+          </h3>
+          <div class="lessons-grid" id="dash-lessons-grid">
+            <!-- Nạp động qua JavaScript -->
+          </div>
+        </section>
+
+        <!-- =================================================================
+             TAB 2: FLASHCARD TƯƠNG TÁC 3D
+             ================================================================= -->
+        <section class="app-tab-content" id="tab-flashcards">
+          <div class="flashcard-wrapper">
+            <!-- Toolbar & Bộ lọc -->
+            <div class="fc-toolbar">
+              <div class="fc-filters">
+                <select class="form-select" id="fc-category-filter">
+                  <option value="all">Tất cả bài học</option>
+                  <option value="adjective_na">Nhóm A: Tính từ な</option>
+                  <option value="adjective_i">Nhóm B: Tính từ い</option>
+                  <option value="adverb">Nhóm C: Phó từ & Liên từ</option>
+                  <option value="lesson9">Nhóm D: Sở thích & Năng lực</option>
+                  <option value="entertainment">Nhóm E: Giải trí & Sở thích</option>
+                  <option value="family_life">Nhóm F: Gia đình & Công việc</option>
+                  <option value="communication">Nhóm G: Lời mời & Giao tiếp</option>
+                </select>
+
+                <select class="form-select" id="fc-batch-size">
+                  <option value="10">Học 10 từ / phiên</option>
+                  <option value="20">Học 20 từ / phiên</option>
+                  <option value="all">Học toàn bộ từ</option>
+                </select>
+
+                <select class="form-select" id="fc-mode-filter">
+                  <option value="all">Chế độ chuẩn (Xem trước JP)</option>
+                  <option value="vi_only">Chế độ thử thách (Xem nghĩa VI trước)</option>
+                </select>
+              </div>
+
+              <div class="fc-progress-info">
+                <button class="btn-icon" id="fc-shuffle-btn" title="Xáo trộn ngẫu nhiên">
+                  <i class="fas fa-random"></i>
+                </button>
+                <button class="btn-icon" id="fc-fav-btn" title="Yêu thích">
+                  <i class="far fa-heart"></i>
+                </button>
+                <span class="fc-counter-badge" id="fc-progress-text">1 / 10</span>
+              </div>
+            </div>
+
+            <!-- Thanh tiến độ mini -->
+            <div class="progress-track mb-3" style="height: 6px;">
+              <div class="progress-fill" id="fc-progress-bar" style="width: 10%;"></div>
+            </div>
+
+            <!-- THẺ FLASHCARD 3D -->
+            <div class="flashcard-3d-scene" id="flashcard-section">
+              <div class="flashcard-inner" id="flashcard-inner">
+                <!-- Mặt trước -->
+                <div class="flashcard-face flashcard-face-front" id="flashcard-front">
+                  <!-- Đổ dữ liệu động -->
+                </div>
+                <!-- Mặt sau -->
+                <div class="flashcard-face flashcard-face-back" id="flashcard-back">
+                  <!-- Đổ dữ liệu động -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Nút điều hướng thẻ -->
+            <div class="fc-controls">
+              <button class="btn-ctrl" id="fc-prev-btn">
+                <i class="fas fa-arrow-left"></i> Từ trước
+              </button>
+              <button class="btn-ctrl" id="fc-flip-btn">
+                <i class="fas fa-sync-alt"></i> Lật thẻ (Space)
+              </button>
+              <button class="btn-ctrl" id="fc-next-btn">
+                Từ tiếp theo <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+
+            <!-- Nút phân loại đã nhớ / cần ôn tập -->
+            <div class="fc-action-tags">
+              <button class="btn-tag-mastered" id="fc-mark-mastered">
+                <i class="fas fa-check"></i> Đã nhớ từ này (+5 XP)
+              </button>
+              <button class="btn-tag-review" id="fc-mark-review">
+                <i class="fas fa-clock"></i> Cần ôn tập lại
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- =================================================================
+             TAB 3: QUIZ & BÀI KIỂM TRA TRẮC NGHIỆM
+             ================================================================= -->
+        <section class="app-tab-content" id="tab-quiz">
+          <div class="quiz-wrapper">
+
+            <!-- 1. Màn hình Cấu hình Quiz -->
+            <div class="quiz-card" id="quiz-setup-card">
+              <div class="text-center mb-4">
+                <div class="brand-logo mx-auto mb-3" style="width: 60px; height: 60px; font-size: 2rem;">?</div>
+                <h2>Bài Kiểm Tra & Luyện Tập Trắc Nghiệm</h2>
+                <p class="text-muted">Kiểm tra khả năng nhận diện chữ Kanji, Hiragana, Romaji, điền từ vào câu và phân biệt ngữ pháp.</p>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label fw-bold mb-1">Chọn nhóm từ vựng muốn kiểm tra:</label>
+                <select class="form-select w-100" id="quiz-category-select">
+                  <option value="all">Tất cả các nhóm (Tổng hợp N5)</option>
+                  <option value="adjective_na">Nhóm A: Tính từ đuôi な</option>
+                  <option value="adjective_i">Nhóm B: Tính từ đuôi い</option>
+                  <option value="adverb">Nhóm C: Phó từ và Liên từ</option>
+                  <option value="lesson9">Nhóm D: Sở thích, Năng lực & Sở hữu (Bài 9)</option>
+                  <option value="entertainment">Nhóm E: Sở thích & Giải trí</option>
+                  <option value="family_life">Nhóm F: Gia đình, Thời gian & Công việc</option>
+                  <option value="communication">Nhóm G: Lời mời & Giao tiếp</option>
+                </select>
+              </div>
+
+              <div class="mb-4">
+                <label class="form-label fw-bold mb-1">Số lượng câu hỏi trong bài:</label>
+                <select class="form-select w-100" id="quiz-length-select">
+                  <option value="5">5 câu hỏi (Luyện nhanh)</option>
+                  <option value="10" selected>10 câu hỏi (Tiêu chuẩn)</option>
+                  <option value="20">20 câu hỏi (Kiểm tra sâu)</option>
+                </select>
+              </div>
+
+              <button class="btn-primary w-100 justify-content-center py-3 fs-5" id="quiz-start-btn">
+                <i class="fas fa-play"></i> Bắt đầu làm bài kiểm tra
+              </button>
+            </div>
+
+            <!-- 2. Màn hình Đang làm Quiz -->
+            <div class="quiz-card d-none" id="quiz-play-card">
+              <div class="quiz-top-bar">
+                <span class="badge badge-type" id="quiz-type-badge">Dạng câu hỏi</span>
+                <span class="fw-bold text-muted" id="quiz-q-counter">Câu 1 / 10</span>
+                <span class="badge badge-lesson" id="quiz-score-badge">Điểm: 0</span>
+              </div>
+
+              <!-- Thanh tiến độ bài làm -->
+              <div class="progress-track mb-4" style="height: 6px;">
+                <div class="progress-fill" id="quiz-progress-bar" style="width: 10%;"></div>
+              </div>
+
+              <!-- Nội dung câu hỏi -->
+              <div id="quiz-prompt-box">
+                <!-- Nạp động câu hỏi -->
+              </div>
+
+              <!-- Lưới 4 đáp án lựa chọn -->
+              <div class="quiz-options-grid" id="quiz-options-grid">
+                <!-- Nạp động qua JavaScript -->
+              </div>
+
+              <!-- Hộp phản hồi Đúng/Sai và giải thích -->
+              <div class="quiz-feedback-box d-none" id="quiz-feedback-box">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="quiz-feedback-status" id="quiz-feedback-status">Chính xác!</div>
+                  <button class="btn btn-sm btn-outline-secondary" id="quiz-feedback-audio" title="Nghe lại phát âm">
+                    <i class="fas fa-volume-up"></i> Nghe
+                  </button>
+                </div>
+                <div class="mt-2 text-dark" id="quiz-feedback-explanation">Giải thích chi tiết...</div>
+              </div>
+
+              <!-- Nút chuyển câu kế tiếp -->
+              <div class="text-end">
+                <button class="btn-primary" id="quiz-next-btn" disabled>
+                  Câu tiếp theo <i class="fas fa-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- 3. Màn hình Kết quả Tổng kết bài làm -->
+            <div class="quiz-card d-none" id="quiz-result-card">
+              <div class="text-center mb-4">
+                <div class="brand-logo mx-auto mb-3" style="width: 68px; height: 68px; font-size: 2.2rem; background: linear-gradient(135deg, var(--accent-gold), #f97316);">
+                  <i class="fas fa-trophy text-white"></i>
+                </div>
+                <h2>Kết Quả Bài Kiểm Tra</h2>
+                <div class="display-4 fw-bold text-primary my-2" id="quiz-result-score">100 điểm</div>
+                <div class="fs-4 text-muted mb-2">Tỷ lệ chính xác: <strong id="quiz-result-pct">100%</strong></div>
+                <div class="my-2" id="quiz-result-counts">
+                  <!-- Số câu đúng sai -->
+                </div>
+                <p class="lead mt-3" id="quiz-result-comment">Bạn đã hoàn thành xuất sắc bài kiểm tra!</p>
+              </div>
+
+              <!-- Khu vực xem lại các câu sai -->
+              <div class="mt-4 pt-3 border-top" id="quiz-review-wrong-box">
+                <!-- Nạp danh sách câu sai -->
+              </div>
+
+              <div class="text-center mt-4">
+                <button class="btn-primary px-4 py-2" id="quiz-retake-btn">
+                  <i class="fas fa-redo"></i> Làm bài kiểm tra khác
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- =================================================================
+             TAB 4: ÔN TẬP THÔNG MINH (SPACED REPETITION)
+             ================================================================= -->
+        <section class="app-tab-content" id="tab-review">
+          <div class="dash-hero-card" style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);">
+            <div class="dash-hero-content">
+              <h1>Hệ Thống Ôn Tập Thông Minh ⏱️</h1>
+              <p>Hệ thống tự động phân loại những từ bạn hay làm sai hoặc đã đến hạn ôn tập định kỳ để tối ưu hóa khả năng ghi nhớ dài hạn.</p>
+              <div class="dash-hero-actions">
+                <button class="btn-white" id="start-smart-review-btn">
+                  <i class="fas fa-clone"></i> Ôn tập bằng Flashcard
+                </button>
+                <button class="btn-outline-white" id="start-review-quiz-btn">
+                  <i class="fas fa-bolt"></i> Kiểm tra nhanh từ cần ôn
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h3 class="dash-section-title mb-0">
+              <i class="fas fa-list-check text-primary"></i> Hàng đợi từ vựng cần ôn tập
+            </h3>
+            <span class="badge badge-warning fs-6" id="review-count-badge">0 từ cần ôn</span>
+          </div>
+
+          <!-- Thông báo khi hàng đợi rỗng -->
+          <div class="empty-state p-5 text-center bg-surface rounded border d-none" id="review-empty-notice">
+            <i class="fas fa-check-double fa-3x text-success mb-3"></i>
+            <h3>Bạn đã hoàn thành hết mục cần ôn tập!</h3>
+            <p class="text-muted">Không còn từ vựng nào bị quá hạn ôn tập lúc này. Hãy tiếp tục học các bài mới hoặc làm bài Quiz tổng hợp nhé!</p>
+          </div>
+
+          <!-- Danh sách từ cần ôn -->
+          <div class="bg-surface rounded border p-3" id="review-due-list">
+            <!-- Nạp động bảng các từ cần ôn -->
+          </div>
+
+          <p class="small text-muted mt-3">
+            <i class="fas fa-info-circle"></i> <em>Lưu ý: Đây là cơ chế lặp lại ngắt quãng đơn giản dựa trên số lần trả lời đúng/sai và lịch hẹn giờ của trình duyệt.</em>
+          </p>
+        </section>
+
+        <!-- =================================================================
+             TAB 5: TRA CỨU TỪ ĐIỂN VÀ LỌC TỪ VỰNG
+             ================================================================= -->
+        <section class="app-tab-content" id="tab-dictionary">
+          <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+            <div>
+              <h2 class="fw-bold mb-1"><i class="fas fa-book-bookmark text-primary"></i> Tra Cứu Từ Vựng N5</h2>
+              <p class="text-muted small mb-0">Tìm kiếm nhanh theo Tiếng Nhật, Hiragana, Kanji, Romaji hoặc Tiếng Việt.</p>
+            </div>
+            <span class="badge badge-type fs-6" id="dict-results-count">Tổng: 60 từ</span>
+          </div>
+
+          <!-- Thanh tìm kiếm và bộ lọc nâng cao -->
+          <div class="dict-filter-bar">
+            <div class="search-box-wrapper">
+              <i class="fas fa-search"></i>
+              <input type="text" class="dict-search-input" id="dict-search-input" placeholder="Nhập từ cần tìm (ví dụ: きれいな, đẹp, yasashii, 音楽...)...">
+            </div>
+
+            <div class="dict-filters-row">
+              <select class="form-select" id="dict-cat-filter">
+                <option value="all">Tất cả bài học</option>
+                <option value="adjective_na">Nhóm A: Tính từ な</option>
+                <option value="adjective_i">Nhóm B: Tính từ い</option>
+                <option value="adverb">Nhóm C: Phó từ & Liên từ</option>
+                <option value="lesson9">Nhóm D: Sở thích & Năng lực</option>
+                <option value="entertainment">Nhóm E: Giải trí & Sở thích</option>
+                <option value="family_life">Nhóm F: Gia đình & Công việc</option>
+                <option value="communication">Nhóm G: Lời mời & Giao tiếp</option>
+              </select>
+
+              <select class="form-select" id="dict-type-filter">
+                <option value="all">Tất cả loại từ</option>
+                <option value="Tính từ đuôi な">Tính từ đuôi な</option>
+                <option value="Tính từ đuôi い">Tính từ đuôi い</option>
+                <option value="Phó từ">Phó từ</option>
+                <option value="Liên từ">Liên từ</option>
+                <option value="Danh từ">Danh từ</option>
+                <option value="Động từ">Động từ</option>
+              </select>
+
+              <select class="form-select" id="dict-status-filter">
+                <option value="all">Tất cả trạng thái</option>
+                <option value="favorite">Chỉ từ Yêu thích</option>
+                <option value="mastered">Từ đã nhớ vững</option>
+                <option value="review">Từ cần ôn tập</option>
+                <option value="unlearned">Từ chưa học</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Danh sách từ vựng hiển thị dạng Grid Cards -->
+          <div id="dict-results-container">
+            <!-- Nạp động qua JavaScript -->
+          </div>
+        </section>
+
+        <!-- =================================================================
+             TAB 6: NGỮ PHÁP & VĂN HÓA BỔ TRỢ
+             ================================================================= -->
+        <section class="app-tab-content" id="tab-grammar">
+          <div class="mb-4">
+            <h2 class="fw-bold text-primary mb-1"><i class="fas fa-graduation-cap"></i> Ngữ Pháp & Văn Hóa Giao Tiếp N5</h2>
+            <p class="text-muted">Các điểm ngữ pháp trọng điểm và nét đẹp giao tiếp tinh tế trong tiếng Nhật.</p>
+          </div>
+
+          <div id="grammar-guides-container">
+            <!-- Nạp động 4 bài giảng chuẩn: Tính từ な vs い, 暑い vs 熱い, Trợ từ が Bài 9, và Nghệ thuật từ chối ちょっと... -->
+          </div>
+        </section>
+
+        <!-- =================================================================
+             TAB 7: THỐNG KÊ HỌC TẬP
+             ================================================================= -->
+        <section class="app-tab-content" id="tab-statistics">
+          <div class="mb-4">
+            <h2 class="fw-bold text-primary mb-1"><i class="fas fa-chart-line"></i> Báo Cáo & Thống Kê Học Tập</h2>
+            <p class="text-muted">Dữ liệu thực tế được ghi nhận trong quá trình học và làm bài kiểm tra của bạn.</p>
+          </div>
+
+          <!-- Thẻ tóm tắt -->
+          <div class="dash-stats-grid mb-4">
+            <div class="stat-card">
+              <div class="stat-card-icon icon-blue"><i class="fas fa-book"></i></div>
+              <div>
+                <div class="stat-card-value" id="stat-total-learned">0 / 60</div>
+                <div class="stat-card-label">Tiến độ tiếp cận từ</div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-icon icon-green"><i class="fas fa-check-circle"></i></div>
+              <div>
+                <div class="stat-card-value" id="stat-mastered">0</div>
+                <div class="stat-card-label">Từ đã nhớ chắc</div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-icon icon-amber"><i class="fas fa-clock"></i></div>
+              <div>
+                <div class="stat-card-value" id="stat-need-review">0</div>
+                <div class="stat-card-label">Từ cần ôn lại</div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-icon icon-blue"><i class="fas fa-bullseye"></i></div>
+              <div>
+                <div class="stat-card-value" id="stat-accuracy">0%</div>
+                <div class="stat-card-label">Tỷ lệ chính xác Quiz</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row g-4 mb-4" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem;">
+            <!-- Biểu đồ tiến độ danh mục -->
+            <div class="stat-box bg-surface p-4 rounded border">
+              <h4 class="fw-bold mb-3"><i class="fas fa-bars-progress text-primary me-2"></i>Tiến độ theo từng nhóm từ vựng</h4>
+              <div id="stat-category-breakdown">
+                <!-- Nạp động thanh tiến độ từng nhóm -->
+              </div>
+            </div>
+
+            <!-- Phân tích điểm yếu & Đề xuất bài học -->
+            <div class="stat-box bg-surface p-4 rounded border">
+              <h4 class="fw-bold mb-3"><i class="fas fa-triangle-exclamation text-warning me-2"></i>Nhóm từ vựng còn yếu</h4>
+              <div id="stat-weak-areas" class="mb-4">
+                <!-- Nạp động -->
+              </div>
+
+              <h4 class="fw-bold mb-3"><i class="fas fa-compass text-primary me-2"></i>Gợi ý bài học tiếp theo</h4>
+              <div id="stat-recommended-lesson">
+                <!-- Nạp động đề xuất -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Bảng lịch sử kiểm tra gần nhất -->
+          <div class="bg-surface p-4 rounded border">
+            <h4 class="fw-bold mb-3"><i class="fas fa-history text-primary me-2"></i>Lịch sử các bài kiểm tra gần đây</h4>
+            <div class="table-responsive">
+              <table class="table-vocab">
+                <thead>
+                  <tr>
+                    <th>Lần</th>
+                    <th>Thời gian</th>
+                    <th>Nhóm bài kiểm tra</th>
+                    <th>Số câu đúng</th>
+                    <th>Kết quả (%)</th>
+                  </tr>
+                </thead>
+                <tbody id="stat-history-tbody">
+                  <!-- Nạp động qua JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- =================================================================
+             TAB 8: CÀI ĐẶT HỆ THỐNG
+             ================================================================= -->
+        <section class="app-tab-content" id="tab-settings">
+          <div class="mb-4">
+            <h2 class="fw-bold text-primary mb-1"><i class="fas fa-sliders-h"></i> Cài Đặt Ứng Dụng</h2>
+            <p class="text-muted">Tùy chỉnh âm thanh, tốc độ phát âm, giao diện và quản lý dữ liệu sao lưu.</p>
+          </div>
+
+          <div class="bg-surface p-4 rounded border mb-4" style="max-width: 650px;">
+            <h4 class="fw-bold mb-3 text-primary"><i class="fas fa-volume-high me-2"></i>Âm thanh & Phát âm Web Speech API</h4>
+
+            <div class="d-flex justify-content-between align-items-center py-3 border-bottom">
+              <div>
+                <div class="fw-bold">Bật âm thanh phát âm tiếng Nhật</div>
+                <div class="small text-muted">Tự động đọc từ vựng và câu ví dụ khi nhấn nút loa</div>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="setting-sound-toggle" checked>
+                <span class="slider round"></span>
+              </label>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center py-3 border-bottom">
+              <div>
+                <div class="fw-bold">Tốc độ phát âm</div>
+                <div class="small text-muted">Điều chỉnh giọng đọc nhanh hoặc chậm theo ý muốn</div>
+              </div>
+              <select class="form-select" id="setting-speech-speed" style="width: 140px;">
+                <option value="0.75">Chậm (0.75x)</option>
+                <option value="1" selected>Chuẩn (1.0x)</option>
+                <option value="1.25">Nhanh (1.25x)</option>
+              </select>
+            </div>
+
+            <h4 class="fw-bold mt-4 mb-3 text-primary"><i class="fas fa-palette me-2"></i>Giao diện</h4>
+
+            <div class="d-flex justify-content-between align-items-center py-3 border-bottom">
+              <div>
+                <div class="fw-bold">Chế độ ban đêm (Dark Mode)</div>
+                <div class="small text-muted">Bảo vệ mắt khi học bài vào ban đêm</div>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="setting-theme-toggle">
+                <span class="slider round"></span>
+              </label>
+            </div>
+
+            <h4 class="fw-bold mt-4 mb-3 text-primary"><i class="fas fa-database me-2"></i>Quản lý tiến độ học tập (LocalStorage)</h4>
+
+            <div class="d-flex justify-content-between align-items-center py-3 border-bottom flex-wrap gap-2">
+              <div>
+                <div class="fw-bold">Xuất dữ liệu học tập (JSON)</div>
+                <div class="small text-muted">Tải về tệp lưu trữ tiến độ, điểm XP và lịch sử bài kiểm tra</div>
+              </div>
+              <button class="btn btn-outline-primary btn-sm" id="btn-export-data">
+                <i class="fas fa-download"></i> Xuất tệp JSON
+              </button>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center py-3 border-bottom flex-wrap gap-2">
+              <div>
+                <div class="fw-bold">Nhập / Khôi phục dữ liệu</div>
+                <div class="small text-muted">Tải lên tệp sao lưu JSON để tiếp tục học</div>
+              </div>
+              <div>
+                <input type="file" id="import-file-input" accept=".json" class="d-none">
+                <button class="btn btn-outline-secondary btn-sm" id="btn-import-data">
+                  <i class="fas fa-upload"></i> Nhập tệp JSON
+                </button>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center pt-3 flex-wrap gap-2">
+              <div>
+                <div class="fw-bold text-danger">Đặt lại toàn bộ tiến độ</div>
+                <div class="small text-muted">Xóa sạch tiến độ học tập và bắt đầu lại từ đầu</div>
+              </div>
+              <button class="btn btn-danger btn-sm" id="btn-reset-data">
+                <i class="fas fa-trash-alt"></i> Xóa dữ liệu
+              </button>
+            </div>
+
+          </div>
+        </section>
+
+      </main>
+    </div>
+
+    <!-- =====================================================================
+         MOBILE BOTTOM NAVIGATION
+         ===================================================================== -->
+    <nav class="mobile-bottom-nav">
+      <a href="#dashboard" class="mobile-nav-item active" data-nav-target="dashboard">
+        <i class="fas fa-home"></i>
+        <span>Trang chủ</span>
+      </a>
+      <a href="#flashcards" class="mobile-nav-item" data-nav-target="flashcards">
+        <i class="fas fa-clone"></i>
+        <span>Thẻ từ</span>
+      </a>
+      <a href="#quiz" class="mobile-nav-item" data-nav-target="quiz">
+        <i class="fas fa-question-circle"></i>
+        <span>Kiểm tra</span>
+      </a>
+      <a href="#review" class="mobile-nav-item" data-nav-target="review">
+        <i class="fas fa-sync-alt"></i>
+        <span>Ôn tập</span>
+      </a>
+      <a href="#dictionary" class="mobile-nav-item" data-nav-target="dictionary">
+        <i class="fas fa-book"></i>
+        <span>Từ điển</span>
+      </a>
+    </nav>
+
+  </div>
+
+  <!-- =====================================================================
+       MODAL CHI TIẾT TỪ VỰNG (POPUP)
+       ===================================================================== -->
+  <div class="modal-overlay" id="word-detail-modal">
+    <div class="modal-container">
+      <button class="modal-close-btn" id="close-word-modal" aria-label="Đóng">
+        <i class="fas fa-times"></i>
+      </button>
+      <div id="word-detail-content">
+        <!-- Đổ động dữ liệu chi tiết của từ vựng -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Switch CSS Component -->
+  <style>
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 48px;
+      height: 26px;
+    }
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: #cbd5e1;
+      transition: .3s;
+      border-radius: 34px;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .3s;
+      border-radius: 50%;
+    }
+    input:checked + .slider {
+      background-color: var(--primary);
+    }
+    input:checked + .slider:before {
+      transform: translateX(22px);
+    }
+    .btn {
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-size: 0.88rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-sm { padding: 0.35rem 0.75rem; font-size: 0.82rem; }
+    .btn-outline-primary {
+      border: 1px solid var(--primary);
+      color: var(--primary);
+      background: transparent;
+    }
+    .btn-outline-primary:hover { background: var(--primary); color: #fff; }
+    .btn-outline-secondary {
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      background: transparent;
+    }
+    .btn-outline-secondary:hover { background: var(--border-color); color: var(--text-main); }
+    .btn-danger { background: var(--danger); color: #fff; border: none; }
+    .btn-danger:hover { background: #dc2626; }
+    .bg-surface { background-color: var(--bg-surface); }
+    .border { border: 1px solid var(--border-color); }
+    .rounded { border-radius: var(--radius-md); }
+  </style>
+
+  <!-- =====================================================================
+       JAVASCRIPT MODULES THEO THỨ TỰ PHỤ THUỘC
+       ===================================================================== -->
+  <script src="js/vocabulary.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/speech.js"></script>
+  <script src="js/flashcards.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/review.js"></script>
+  <script src="js/statistics.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>

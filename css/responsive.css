@@ -1,0 +1,248 @@
+/**
+ * NIHONGO STEP - RESPONSIVE STYLESHEET
+ * Tối ưu hóa hiển thị trên Màn hình máy tính, Máy tính bảng (Tablet) và Điện thoại di động (Mobile).
+ * Menu thanh điều hướng dưới đáy (Bottom Navigation) dành cho điện thoại.
+ */
+
+/* =========================================================================
+   1. TABLET & LAPTOP NHỎ (Max-width: 1024px)
+   ========================================================================= */
+@media (max-width: 1024px) {
+  :root {
+    --sidebar-width: 230px;
+  }
+
+  .app-content {
+    padding: 1.5rem;
+  }
+
+  .dash-hero-card {
+    padding: 1.75rem 2rem;
+  }
+
+  .dash-hero-content h1 {
+    font-size: 1.75rem;
+  }
+
+  .fc-jp-word {
+    font-size: 2.8rem;
+  }
+}
+
+/* =========================================================================
+   2. MOBILE & TABLET DỌC (Max-width: 768px)
+   ========================================================================= */
+@media (max-width: 768px) {
+  /* SIDEBAR BIẾN THÀNH DRAWER TRƯỢT */
+  .app-sidebar {
+    transform: translateX(-100%);
+    box-shadow: var(--shadow-xl);
+  }
+
+  .app-sidebar.open {
+    transform: translateX(0);
+  }
+
+  .mobile-menu-btn {
+    display: block;
+  }
+
+  .app-main {
+    margin-left: 0;
+    padding-bottom: 70px; /* Dành chỗ cho thanh Bottom Nav */
+  }
+
+  .app-topbar {
+    padding: 0 1.25rem;
+  }
+
+  .topbar-quote {
+    display: none; /* Ẩn câu châm ngôn trên màn hình nhỏ để tránh tràn */
+  }
+
+  .app-content {
+    padding: 1.25rem 1rem;
+  }
+
+  /* DASHBOARD */
+  .dash-hero-card {
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+  }
+
+  .dash-hero-card::after {
+    display: none;
+  }
+
+  .dash-hero-content h1 {
+    font-size: 1.5rem;
+  }
+
+  .dash-hero-actions {
+    flex-direction: column;
+  }
+
+  .dash-hero-actions .btn-white,
+  .dash-hero-actions .btn-outline-white {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .dash-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .stat-card {
+    padding: 1rem;
+    gap: 0.75rem;
+  }
+
+  .stat-card-icon {
+    width: 42px;
+    height: 42px;
+    font-size: 1.1rem;
+  }
+
+  .stat-card-value {
+    font-size: 1.35rem;
+  }
+
+  .lessons-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* FLASHCARD */
+  .flashcard-3d-scene,
+  .flashcard-inner,
+  .flashcard-face {
+    min-height: 420px;
+    padding: 1.5rem;
+  }
+
+  .fc-jp-word {
+    font-size: 2.5rem;
+  }
+
+  .fc-controls {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .fc-action-tags {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .btn-tag-mastered,
+  .btn-tag-review {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* QUIZ */
+  .quiz-card {
+    padding: 1.5rem 1.25rem;
+    border-radius: var(--radius-lg);
+  }
+
+  .q-word-hero {
+    font-size: 2.2rem;
+  }
+
+  .q-vi-hero {
+    font-size: 1.6rem;
+  }
+
+  .quiz-option-btn {
+    padding: 0.85rem 1rem;
+    font-size: 0.95rem;
+  }
+
+  /* DICTIONARY SEARCH */
+  .dict-filters-row {
+    flex-direction: column;
+  }
+
+  .dict-filters-row select {
+    width: 100%;
+  }
+
+  .vocab-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* TOAST NOTIFICATION */
+  .toast-container {
+    bottom: 80px;
+    right: 1rem;
+    left: 1rem;
+  }
+
+  .app-toast {
+    max-width: 100%;
+  }
+
+  /* =======================================================================
+     MOBILE BOTTOM NAVIGATION BAR
+     ======================================================================= */
+  .mobile-bottom-nav {
+    display: flex !important;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+    background-color: var(--bg-surface);
+    border-top: 1px solid var(--border-color);
+    z-index: 150;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05);
+  }
+
+  .mobile-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2rem;
+    color: var(--text-muted);
+    font-size: 0.68rem;
+    font-weight: 700;
+    flex: 1;
+    height: 100%;
+    transition: color 0.2s ease;
+  }
+
+  .mobile-nav-item i {
+    font-size: 1.2rem;
+  }
+
+  .mobile-nav-item.active {
+    color: var(--primary);
+  }
+}
+
+/* Ẩn Bottom Nav trên desktop */
+.mobile-bottom-nav {
+  display: none;
+}
+
+/* =========================================================================
+   3. MÀN HÌNH CỰC NHỎ (Max-width: 420px)
+   ========================================================================= */
+@media (max-width: 420px) {
+  .dash-stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-chip {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.78rem;
+  }
+
+  .fc-jp-word {
+    font-size: 2.1rem;
+  }
+}

@@ -1,0 +1,100 @@
+/**
+ * NIHONGO STEP - HỆ THỐNG BIẾN GIAO DIỆN (THEMES & DESIGN TOKENS)
+ * Thiết kế trẻ trung, hiện đại lấy cảm hứng từ các ứng dụng học ngôn ngữ cao cấp.
+ * Màu chủ đạo: Xanh ngọc (Emerald / Ocean) kết hợp Vàng ấm áp (Amber / Golden XP).
+ */
+
+:root {
+  /* Bảng màu chính - Light Mode */
+  --primary: #10b981;          /* Xanh ngọc tươi sáng */
+  --primary-hover: #059669;
+  --primary-light: #ecfdf5;
+  --primary-glow: rgba(16, 185, 129, 0.25);
+
+  --secondary: #3b82f6;        /* Xanh dương năng động */
+  --secondary-hover: #2563eb;
+  --secondary-light: #eff6ff;
+
+  --accent-gold: #f59e0b;      /* Vàng năng lượng / XP / Streak */
+  --accent-gold-light: #fffbeb;
+
+  --danger: #ef4444;           /* Đỏ báo sai */
+  --danger-light: #fef2f2;
+  --success: #10b981;          /* Xanh báo đúng */
+  --info: #06b6d4;
+
+  /* Nền và Bề mặt */
+  --bg-app: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-surface-elevated: #ffffff;
+  --bg-sidebar: #ffffff;
+  --border-color: #e2e8f0;
+  --border-focus: #10b981;
+
+  /* Màu chữ */
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --text-sub: #475569;
+  --text-inverse: #ffffff;
+
+  /* Đổ bóng */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+  --shadow-card: 0 6px 16px rgba(16, 185, 129, 0.08);
+
+  /* Bo góc */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-full: 9999px;
+
+  /* Font chữ */
+  --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-japanese: 'M PLUS Rounded 1c', 'Noto Sans JP', sans-serif;
+
+  /* Kích thước */
+  --sidebar-width: 260px;
+  --header-height: 70px;
+}
+
+/* =========================================================================
+   DARK MODE
+   ========================================================================= */
+[data-theme="dark"] {
+  --primary: #10b981;
+  --primary-hover: #34d399;
+  --primary-light: #064e3b;
+  --primary-glow: rgba(16, 185, 129, 0.35);
+
+  --secondary: #60a5fa;
+  --secondary-hover: #93c5fd;
+  --secondary-light: #1e3a8a;
+
+  --accent-gold: #fbbf24;
+  --accent-gold-light: #451a03;
+
+  --danger: #f87171;
+  --danger-light: #450a0a;
+  --success: #34d399;
+
+  --bg-app: #0b1120;           /* Xanh đen vũ trụ sang trọng */
+  --bg-surface: #131c31;
+  --bg-surface-elevated: #1e293b;
+  --bg-sidebar: #0f172a;
+  --border-color: #1e293b;
+  --border-focus: #34d399;
+
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --text-sub: #cbd5e1;
+  --text-inverse: #0f172a;
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.6);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.7);
+  --shadow-card: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
